@@ -1,0 +1,30 @@
+/* pages/lines/lines.wxss */
+.line-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+ec-canvas{
+    width: 100%;
+    height: 100%;
+}
+.select-wrap{
+    float: right;
+    width: 36%;
+    margin: 8px auto;
+    z-index: 100;
+    height: 200px;
+}
+.select-wrap > select{
+    display: block;
+    margin: 12px auto;
+}
+.select-wrap > select-date{
+    display: block;
+    margin: 12px auto;
+}

@@ -1,0 +1,13 @@
+<!--pages/lines/lines.wxml-->
+<view class="line-container">
+    
+    
+    <view class="select-wrap">
+        <select prop-array='{{selectArray}}'  bind:select='select' />
+        <select-date prop-array='{{selectArrayDate}}'  bind:select='selectDate' />
+    </view>
+    <block>
+        <ec-canvas id='dom-line' canvas-id='chart-line' ec='{{ec}}'></ec-canvas>
+    </block>
+   
+</view>
