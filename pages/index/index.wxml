@@ -18,21 +18,14 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
    
-    <block style="height: 300px;width: 100%;">
-      <text>123</text>
-    </block>
+
     <block style="height: 300px;width: 100%;" >
       <view bindtap="bindViewTap">
         <text>跳转</text>
       </view>
     </block>
-    
   </view>
-  <view>
-    <block style="height: 300px;width: 100%;">
-      <text>456</text>
-    </block>
-  </view>
+
   <view bindtap="bindViewLines">
         <text>跳转lines</text>
       </view>
