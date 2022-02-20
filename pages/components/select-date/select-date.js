@@ -13,7 +13,7 @@ Component({
      */
     data: {
       selectShow: false,//初始option不显示
-      selectText: "最近一周",//初始内容
+      selectText: "日常记录",//初始内容
     },
     /**
      * 组件的方法列表

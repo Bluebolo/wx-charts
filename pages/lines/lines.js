@@ -6,12 +6,19 @@ const app = getApp();
 let chartOrigin;
 
 var lineOption = {
+
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
     color: ['#37A2DA','#67E0e3','#9FE6B8'],
     legend:{
-        data:['A','B','C'],
-        top: 20,
-        left: 'center',
-        z: 100
+        // data:['收缩压(mmHg)','舒张压(mmHg)','血脂(mmol/L)'],
+        // top: 20,
+        // left: 'center',
+        // z: 100
     },
     xAxis: {
         type: 'category',
@@ -21,29 +28,63 @@ var lineOption = {
         type:'value'
     },
     series:[{
-        name: 'A',
+        name: '收缩压(mmHg)',
         type: 'line',
         smooth:true,
-        data:[18,36,65,30,78,40,33]
+        data:[96,98,100,112,116,103,121],
+        markPoint: {
+            data: [
+              { type: 'max', name: 'Max' },
+              { type: 'min', name: 'Min' }
+            ]
+          },
+          markLine: {
+            data: [{ type: 'average', name: 'Avg' }]
+          }
     },{
-        name:'B',
+        name:'舒张压(mmHg)',
         type: 'line',
         smooth:true,
-        data:[12,50,51,35,70,30,20]
+        data:[71,78,86,75,72,79,69],
+        markPoint: {
+            data: [
+              { type: 'max', name: 'Max' },
+              { type: 'min', name: 'Min' }
+            ]
+          },
+          markLine: {
+            data: [{ type: 'average', name: 'Avg' }]
+          }
     },{
-        name:'C',
+        name:'血脂(mmol/L)',
         type:'line',
         smooth:true,
-        data:[10,30,20]
+        data:[3.6,4.1,5.1,6.2,3.9,4.1,5.5],
+        markPoint: {
+            data: [
+              { type: 'max', name: 'Max' },
+              { type: 'min', name: 'Min' }
+            ]
+          },
+          markLine: {
+            data: [{ type: 'average', name: 'Avg' }]
+          }
     }]
   };
   var barOption = {
+   
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
     color: ['#37A2DA','#67E0e3','#9FE6B8'],
     legend:{
-        data:['A','B','C'],
-        top: 20,
-        left: 'center',
-        z: 100
+        // data:['收缩压','舒张压','血脂','体重'],
+        // top: 20,
+        // left: 'center',
+        // z: 100
     },
     xAxis: {
         type: 'category',
@@ -53,20 +94,20 @@ var lineOption = {
         type:'value'
     },
     series:[{
-        name: 'A',
+        name: '收缩压(mmHg)',
         type: 'bar',
         smooth:true,
-        data:[18,36,65,30,78,40,33]
+        data:[96,98,100,112,116,103,121]
     },{
-        name:'B',
+        name:'舒张压(mmHg)',
         type: 'bar',
         smooth:true,
-        data:[12,50,51,35,70,30,20]
+        data:[71,78,86,75,72,79,69]
     },{
-        name:'C',
+        name:'血脂(mmol/L)',
         type:'bar',
         smooth:true,
-        data:[10,30,20]
+        data:[3.6,4.1,5.1,6.2,3.9,4.1,5.5]
     }]
   };
   var pieOption = {
@@ -97,6 +138,42 @@ var lineOption = {
               }
         }]
   };
+
+  var paper = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      legend: {},
+    //   grid: {
+    //     left: '3%',
+    //     right: '4%',
+    //     bottom: '3%',
+    //     containLabel: true
+    //   },
+      xAxis: {
+        type: 'value',
+        // boundaryGap: [0, 0.01]
+      },
+      yAxis: {
+        type: 'category',
+        data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+      },
+      series: [
+        {
+          name: '2011',
+          type: 'bar',
+          data: [18203, 23489, 29034, 104970, 131744, 630230]
+        },
+        {
+          name: '2012',
+          type: 'bar',
+          data: [19325, 23438, 31000, 121594, 134141, 681807]
+        }
+      ]
+  }
 function initChart(canvas, width, height, dpr) {
     chartOrigin = echarts.init(canvas, null, {
       width: width,
@@ -131,10 +208,10 @@ Page({
                 ],
         selectArrayDate:[{
             "id":"30",
-            "value":"最近一周"
+            "value":"日常记录"
         },{
             "id":"31",
-            "value":"最近两周"
+            "value":"最近检测"
         }]
     },
 
@@ -146,6 +223,16 @@ Page({
             chartOrigin.setOption(barOption,true)
         }else if(e.detail.id == '22'){
             chartOrigin.setOption(pieOption,true)
+        }
+    },
+    selectDate:function(e){
+        if(e.detail.id === '30'){
+            // chartOrigin.setOption(lineOption,true)
+            document.querySelector('#dom-line').style.display = 'block'
+            document.querySelector('#table').style.display = 'none'
+        }else if(e.detail.id === '31'){
+            document.querySelector('#dom-line').style.display = 'none'
+            document.querySelector('#table').style.display = 'block'
         }
     },
     /**
