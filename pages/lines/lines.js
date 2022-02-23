@@ -112,15 +112,18 @@ var lineOption = {
   };
   var pieOption = {
     tooltip: {
-        trigger: 'item'
+        trigger: 'item',
+        axisPointer: {
+            type: 'shadow'
+          }
       },
     legend:{
         // orient: 'vertical',
-        left:'left'
+        
     },
     series:[
         {
-             type:'pie',
+            type:'pie',
             radius: '50%',
             data: [
                 { value: 1048, name: 'Search Engine' },
